@@ -1,0 +1,53 @@
+{% extends '@Interface/realstate/base-realstate-app.html.twig' %}
+
+{% block app %}
+
+    <section class="cover overlay height-200 height-270-xs">
+        <img src="{{ asset('bundles/interface/images/bg-residence.jpg') }}" alt="cover"/>
+        <div class="overlay overlay-full overlay-bg-black bg-transparent">
+            <div class="container">
+                <h1 class="text-h1 text-overlay">Accueil</h1>
+            </div>
+        </div>
+        <div class="overlay overlay-bg-black">
+            <div class="v-bottom">
+                <div class="container">
+                    <p class="text-overlay">
+
+                        <span class="hidden-sm hidden-xs">
+                               {{ 'Check out the local architecture, meet your would be neighbors, find real estate, homes for sale, properties for rent, school and neighborhood information and much more.'|trans }}
+                        </span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="row" style="margin-top: 10px; margin-bottom: 10px;">
+            <div class="col-md-6"><a href="#!/logements/list"
+                                     class="btn btn-primary btn-block">{{ 'Our accommodation'|trans }}</a>
+            </div>
+            <div class="col-md-6"><a href="#!/evennements/list"
+                                     class="btn btn-primary btn-block">{{ 'Our Event'|trans }}</a>
+            </div>
+        </div>
+        <div class="row">
+            <div ng-view></div>
+        </div>
+    </div>
+{% endblock app %}
+{% block  javascripts %}
+    {{ parent() }}
+    <!-- library  realstate/js/app/app.js-->
+    <script src="{{ asset('bower_components/realestate/js/app/app.js') }}"></script>
+    <script src="{{ asset('bundles/interface/js/realstate/app/dist/regroup-all.js') }}"></script>
+    <script src="{{ asset('bundles/interface/js/realstate/app/dist/version-loader.js') }}"></script>
+    <script>angular.bootstrap(document, ['realstateApp']);</script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.panel .panel-default').collapse();
+
+        });
+    </script>
+{% endblock javascripts %}
+

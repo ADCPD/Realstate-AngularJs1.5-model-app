@@ -1,0 +1,28 @@
+realstate_app_public:
+    path:     /annonces
+    defaults: { _controller: InterfaceBundle:RealstateApp:indexRealstate }
+    options:
+        expose: true
+
+realstate_list_proprities__public_json:
+    path:    /properties/list/get.json
+    defaults: { _controller: InterfaceBundle:RealstateApp:jsonListingProperties }
+    options:
+        expose: true
+
+realstate_list_events__public_json:
+    path:    /evennements/list/get.json
+    defaults: { _controller: InterfaceBundle:RealstateApp:jsonListingEvents }
+    options:
+        expose: true
+
+
+realstate_list_events_calendar_json:
+    path:  /evennements/calendar/get.json
+    defaults : { _controller: InterfaceBundle:RealstateApp:eventCalendar }
+    options:
+        expose:  true
+
+realstate_list_events_calendar_view:
+    path:  /evennements/calendar
+    defaults : { _controller: InterfaceBundle:RealstateApp:eventCalendarView }

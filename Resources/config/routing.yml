@@ -1,0 +1,15 @@
+realstate_homepage:
+    path:     /
+    defaults: { _controller: InterfaceBundle:DefaultInterface:publicHome }
+
+realstate_property_homepage:
+    path:     /property
+    defaults: { _controller: InterfaceBundle:PropertyInterface:publicShow}
+
+secure_admin_homepage:
+    path:     /_secure/admin
+    defaults: { _controller: InterfaceBundle:DefaultInterface:AdminDash }
+
+secure_user_homepage:
+    path:     /_secure
+    defaults: { _controller: InterfaceBundle:DefaultInterface:userDash }

@@ -1,0 +1,18 @@
+div[show-during-resolve]{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background: rgba(255,255,255,0.5);
+    z-index: 100000;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    align-content: center;
+}
+
+div[show-during-resolve] h1{
+    color: #283e93;
+}

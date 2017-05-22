@@ -1,0 +1,183 @@
+<div class="container" ng-controller="getListController">
+
+
+    <div class="col-md-3">
+
+        <div class="panel panel-default" data-toggle="panel-collapse" data-open="true">
+            <div class="panel-heading panel-collapse-trigger collapse in" data-toggle="collapse"
+                 data-target="#4ecdc2cc-3356-5a94-39a7-247a235aa415" aria-expanded="true">
+                <h4 class="panel-title">Recherche</h4>
+            </div>
+            <div class="collapse in">
+                <div class="panel-body">
+                    <div class="form-group input-group">
+                        <input type="text" class="form-control" placeholder="Search" ng-model="searchText.$">
+                        <span class="input-group-btn">
+			               	<button class="btn btn-primary" type="button"><i class="fa fa-search"></i></button>
+		                	</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default" data-toggle="panel-collapse" data-open="true">
+            <div class="panel-heading panel-collapse-trigger collapse in" data-toggle="collapse"
+                 data-target="#9cd083d1-8d00-7f4d-6b2c-210587b067cf" aria-expanded="true">
+                <h4 class="panel-title">Lodging</h4>
+            </div>
+
+            <div id="9cd083d1-8d00-7f4d-6b2c-210587b067cf" class="collapse in" aria-expanded="true">
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label for="bedrooms">Bedrooms:</label>
+                        <div class="input-group bootstrap-touchspin"><span
+                                class="input-group-addon bootstrap-touchspin-prefix"
+                                style="display: none;"></span><input id="bedrooms" data-toggle="touch-spin"
+                                                                     data-verticalbuttons="true" type="text"
+                                                                     ng-model="searchText.bedroom"
+                                                                     name="guests" class="form-control"
+                                                                     placeholder="0"
+                                                                     style="display: block;">
+                            <span
+                                    class="input-group-addon bootstrap-touchspin-postfix"
+                                    style="display: none;"></span><span class="input-group-btn-vertical"><button
+                                    class="btn btn-default bootstrap-touchspin-up" type="button"><i
+                                    class="glyphicon glyphicon-chevron-up"></i></button><button
+                                    class="btn btn-default bootstrap-touchspin-down" type="button"><i
+                                    class="glyphicon glyphicon-chevron-down"></i></button></span></div>
+                    </div>
+                    <div class="form-group margin-none">
+                        <label for="bathrooms">Bathrooms:</label>
+                        <div class="input-group bootstrap-touchspin"><span
+                                class="input-group-addon bootstrap-touchspin-prefix"
+                                style="display: none;"></span><input id="bathrooms" data-toggle="touch-spin"
+                                                                     data-verticalbuttons="true" type="text"
+                                                                     placeholder="0"
+                                                                     name="guests" class="form-control"
+                                                                     ng-model="searchText.bathroom"
+                                                                     style="display: block;">
+                            <span
+                                    class="input-group-addon bootstrap-touchspin-postfix"
+                                    style="display: none;"></span><span class="input-group-btn-vertical"><button
+                                    class="btn btn-default bootstrap-touchspin-up" type="button"><i
+                                    class="glyphicon glyphicon-chevron-up"></i></button><button
+                                    class="btn btn-default bootstrap-touchspin-down" type="button"><i
+                                    class="glyphicon glyphicon-chevron-down"></i></button></span></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default" data-toggle="panel-collapse" data-open="true">
+            <div class="panel-heading panel-collapse-trigger collapse in" data-toggle="collapse"
+                 data-target="#4d4b38a6-989f-e0d9-3077-40f1f38eff1f" aria-expanded="true">
+                <h4 class="panel-title">Price per night</h4>
+            </div>
+
+            <div id="4d4b38a6-989f-e0d9-3077-40f1f38eff1f" class="collapse in" aria-expanded="true">
+                <div class="panel-body">
+
+                    <div slider ng-model="price.price" start=1 end=10></div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="col-md-9">
+
+        <div class="row">
+            <div class="col-xs-6">
+                <h4><span class="text-primary">{{ entities.length }}</span> Results</h4>
+            </div>
+
+            <div class="col-xs-6 text-right">
+                <div class="dropdown display-inline-block">
+                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"
+                            aria-expanded="false">
+                        Sort by:
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu pull-right" ng-model="selectFilter">
+                        <li><a>Action</a></li>
+                        <li>
+                            <a data-value="price" value="price" ng-click="sortBy('price')">Prix
+                                <span class="sortorder" ng-show="propertyName === 'price'"
+                                      ng-class="{reverse: reverse}"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a data-value="createAt" value="createAt" ng-click="sortBy('createAt')">Date
+                                <span class="sortorder" ng-show="propertyName === 'createAt'"
+                                      ng-class="{reverse: reverse}"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="btn-group display-inline-block">
+                    <a class="btn btn-primary active" href="#!/logements/list"><i class="fa fa-list"></i></a>
+                    <a class="btn btn-primary" href="#!/logements/grid"><i class="fa fa-th"></i></a>
+                </div>
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="panel panel-default"
+                 ng-repeat="item in entities | filter:searchText | orderBy:propertyName:reverse ">
+                <div class="panel-body">
+                    <div class="media media-clearfix-xs media-clearfix-sm">
+                        <div class="media-left">
+                            <p>
+                                <a href="/{{item.locale}}/estate-{{ item.id}}.html">
+                                    <img src="/{{ item.images }}" alt="property-{{ item.rentOrSale }}-{{item.id}}"
+                                         width="150"
+                                         class="media-object">
+                                </a>
+                            </p>
+                        </div>
+                        <div class="media-body">
+                            <div class="pull-right">
+                            </div>
+                            <h4 class="media-heading margin-v-0-10">
+                                <a href="/{{item.locale}}/estate-{{ item.id}}.html">{{item.title}}</a>
+
+                                <small class="text-grey-400"><i class="fa fa-clock-o fa-fw"></i> {{item.createAt}}
+                                </small>
+                            </h4>
+                            <p>
+                                <span class="label label-grey-100"><i class="fa fa-home fa-fw"></i>{{item.bedroom}} Bedrooms</span>
+                                <span class="label label-grey-100"><i class="fa fa-fw icon icon-toilet"></i> {{item.bathroom}} Bathrooms</span>
+                                <span ng-if="item.services.gardian" class="label label-grey-100"><i
+                                        class="fa fa-shield"
+                                        aria-hidden="true"></i> Gardian</span>
+                                <span ng-if="item.services.elevator" class="label label-grey-100"><i
+                                        class="fa fa-road"
+                                        aria-hidden="true"></i> Elevator</span>
+                                <span ng-if="item.services.parking" class="label label-grey-100"><i
+                                        class="fa fa-product-hunt" aria-hidden="true"></i> Parking</span>
+                            </p>
+                            <p class="margin-none">
+                                {{item.content}}
+                            </p>
+                            <span class="label label-grey-100">DT {{item.price}}</span>&nbsp;
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <pagination class="pagination margin-top-none"
+                        ng-model="currentPage"
+                        total-items="entities.length"
+                        max-size="maxSize"
+                        boundary-links="true">
+            </pagination>
+
+        </div>
+    </div>
+
+
+</div>
