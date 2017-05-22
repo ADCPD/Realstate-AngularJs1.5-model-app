@@ -1,5 +1,11 @@
 # Realstate-AngularJs1.5-model-app
 
+Le projet **AngularJs** dans le repo : 
+ 
+https://github.com/ADCPD/Realstate-AngularJs1.5-model-app/tree/master/Resources/public/js/realstate
+
+Suivez les etapes à la mise en ligne à partir d'un serveur d'*entreprise* :  
+
 #Comment installer npm, gulp, AngularJs et Symfony
 
 Afin de faire fonctionner Angular Js dans un projet Symfony, il faut suivre les étapes suivante :
